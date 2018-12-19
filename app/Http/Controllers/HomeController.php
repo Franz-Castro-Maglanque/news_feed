@@ -25,10 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //does not work
-        // $posts = auth()->user()->posts()->orderBy('created_at', 'DESC')->get();
-
-        $posts = auth()->user()->posts->sortByDesc('updated_at');
+        $user_id = auth()->user()->id;
+        // $user = User::find($user_id);
+        $posts = Auth::user()->posts->orderBy('title', 'desc')->get();
         // return view('home')->with('posts',$user->posts);
         return view('home')->with('posts',$posts);
     }
